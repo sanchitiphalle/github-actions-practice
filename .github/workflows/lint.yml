@@ -1,0 +1,23 @@
+name: LINT
+
+on: 
+  push:
+    paths: "*.py"
+
+jobs:
+  Code-linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v7
+
+      - name: install python
+        uses: actions/setup-python@v4
+        with:
+            python-version: 3.14
+
+      - name: install lint
+        run: pip install ruff
+
+      - name: check the files using lint
+        run: ruff check .
